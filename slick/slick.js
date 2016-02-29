@@ -1927,19 +1927,19 @@
             }
         }
 
-        _.listWidth = _.$list.width();
+        _.listWidth = _.$list[0].getBoundingClientRect().width;
         _.listHeight = _.$list.height();
 
 
         if (_.options.vertical === false && _.options.variableWidth === false) {
-            _.slideWidth = Math.ceil(_.listWidth / _.options.slidesToShow);
-            _.$slideTrack.width(Math.ceil((_.slideWidth * _.$slideTrack.children('.slick-slide').length)));
+            _.slideWidth = _.listWidth / _.options.slidesToShow;
+            _.$slideTrack.width((_.slideWidth * _.$slideTrack.children('.slick-slide').length));
 
         } else if (_.options.variableWidth === true) {
             _.$slideTrack.width(5000 * _.slideCount);
         } else {
-            _.slideWidth = Math.ceil(_.listWidth);
-            _.$slideTrack.height(Math.ceil((_.$slides.first().outerHeight(true) * _.$slideTrack.children('.slick-slide').length)));
+            _.slideWidth = _.listWidth;
+            _.$slideTrack.height((_.$slides.first().outerHeight(true) * _.$slideTrack.children('.slick-slide').length));
         }
 
         var offset = _.$slides.first().outerWidth(true) - _.$slides.first().width();
